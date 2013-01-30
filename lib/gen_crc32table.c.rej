@@ -1,0 +1,9 @@
+--- lib/gen_crc32table.c
++++ lib/gen_crc32table.c
+@@ -1,5 +1,5 @@
+ #include <stdio.h>
+-//#include "../include/generated/autoconf.h"
++#include "../include/linux/autoconf.h"
+ #include "crc32defs.h"
+ #include <inttypes.h>
+ 
