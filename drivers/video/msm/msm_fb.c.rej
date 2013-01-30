@@ -1,0 +1,40 @@
+--- drivers/video/msm/msm_fb.c
++++ drivers/video/msm/msm_fb.c
+@@ -1006,29 +1005,17 @@
+ 
+ 	fix->line_length = msm_fb_line_length(mfd->index, panel_info->xres,
+ 					      bpp);
+-
+-	/* Make sure all buffers can be addressed on a page boundary by an x
+-	 * and y offset */
+-
+-	remainder = (fix->line_length * panel_info->yres) % PAGE_SIZE;
+-	if (!remainder)
+-		remainder = PAGE_SIZE;
+-	remainder_mode2 = (fix->line_length *
+-				panel_info->mode2_yres) % PAGE_SIZE;
+-	if (!remainder_mode2)
+-		remainder_mode2 = PAGE_SIZE;
+-
+ 	/* calculate smem_len based on max size of two supplied modes */
+-	fix->smem_len = MAX((msm_fb_line_length(mfd->index, panel_info->xres,
+-					      bpp) *
+-			    panel_info->yres + PAGE_SIZE -
+-				remainder) * mfd->fb_page,
+-			    (msm_fb_line_length(mfd->index,
++	fix->smem_len = MAX(msm_fb_line_length(mfd->index,
++					       panel_info->xres,
++					       bpp) *
++			    panel_info->yres * mfd->fb_page,
++			    msm_fb_line_length(mfd->index,
+ 					       panel_info->mode2_xres,
+-					       bpp) *
+-			    panel_info->mode2_yres + PAGE_SIZE -
+-				remainder_mode2) * mfd->fb_page);
++					       (panel_info->mode2_bpp+7)/8) *
++			    panel_info->mode2_yres * mfd->fb_page);
+ 
++	fix->smem_len += 128 * 1024;
+ 
+ 	mfd->var_xres = panel_info->xres;
+ 	mfd->var_yres = panel_info->yres;
