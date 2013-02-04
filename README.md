@@ -1,4 +1,4 @@
-Serene-ICS-MSM7x30
+Vengeance-Kernel-MSM7x30
 ==================
 
 Supported Devices :-
@@ -14,7 +14,7 @@ Supported Devices :-
 * Iyokan
 * Phoenix
 
-Serene ICS Kernel source for 2011 XPERIA Devices ( Linux Version : 2.6.32.9 )
+Vengeance ICS Kernel source for 2011 XPERIA Devices ( Linux Version : 2.6.32.9 )
 
   Linux kernel release 2.6.xx <http://kernel.org/>
 

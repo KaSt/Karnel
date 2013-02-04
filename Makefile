@@ -1,3 +1,6 @@
+# Vengeance Kernel Makefile
+
+
 VERSION = 2
 PATCHLEVEL = 6
 SUBLEVEL = 32

@@ -1,5 +1,5 @@
 /*
- *
+ * Vengeance Kernel Frequency Table
  * Copyright (C) 2007 Google, Inc.
  * Copyright (c) 2007-2010, Code Aurora Forum. All rights reserved.
  *
@@ -102,9 +102,9 @@ static struct cpufreq_frequency_table freq_table[] = {
 //	{ 17, CPUFREQ_TABLE_END },
 	{ 17, 1708800 },
 	{ 18, 1804800 },
-        // { 19, 1900800 },
-	// { 20, 2016000 },
-	{ 19, CPUFREQ_TABLE_END },
+        { 19, 1900800 },
+	{ 20, 2016000 },
+	{ 21, CPUFREQ_TABLE_END },
 };
 
 /* Use negative numbers for sources that can't be enabled/disabled */
@@ -144,8 +144,8 @@ static struct clkctl_acpu_speed acpu_freq_tbl[] = {
 	{ 1612800, PLL_2,   3, 0,  UINT_MAX, 1300, VDD_RAW(1300) },
 	{ 1708800, PLL_2,   3, 0,  UINT_MAX, 1350, VDD_RAW(1350) },
 	{ 1804800, PLL_2,   3, 0,  UINT_MAX, 1400, VDD_RAW(1400) },
-	//{ 1900800, PLL_2,   3, 0,  UINT_MAX, 1450, VDD_RAW(1450) },
-	//{ 2016000, PLL_2,   3, 0,  UINT_MAX, 1500, VDD_RAW(1500) },
+	{ 1900800, PLL_2,   3, 0,  UINT_MAX, 1450, VDD_RAW(1450) },
+        { 2016000, PLL_2,   3, 0,  UINT_MAX, 1500, VDD_RAW(1500) },
 	{ 0 }
 };
 

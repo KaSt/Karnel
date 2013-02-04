@@ -1,0 +1,120 @@
+                                                            Changelog for Vengeance Kernel
+                                               
+Devices Supported ( MSM7x30 - 2.6.32.9 Linux kernel ):-
+* Coconut ( Live With Walkman )
+* Smultron ( Mini )
+* Mango ( Mini Pro )
+* Satsuma ( Active )
+* Urushi ( Ray )
+* Anzu ( Arc )
+* Ayame ( Arc S )
+* Haida ( Neo V)
+* Hallon ( Neo )
+* Iyokan ( Pro )
+* Phoenix ( Neo L )
+
+>----Version 1.20---- 
+1- First Release
+2- based on Sony's 4.1.B.1.13 sources
+3- compiled using linaro 4.6.2 toolchain
+4- added overclock patch upto 1.6 GHz for MSM7x30 devices
+5- includes stock governors
+6- based on linux-android 2.6.32.9 kernel
+7- init.d support
+8- zRAM support
+9- Added CWM recovery 6.0.2.7 ( Vol. Buttons ) and TWRP recovery 2.3.3.0 ( Power Button )
+10- Autoroot script by Doomlord ( superuser binary )
+11- Added kernel memory tweaks
+12- Modified stock voltage a bit
+13- Fixed duplicate member error
+
+>----Version 1.21----
+1- fixed ramdisk
+2- updated superuser binary
+
+>----Version 1.22
+Skipped
+
+>----Version 1.23----
+1- Increased overclock uptop 1.8 GHz
+2- Added tweaked smartass governor
+3- fixed chargemon
+4- fixed boot-script
+5- some minor changes in ramdisk
+6- Updated TWRP recovery
+7- Added USB OTG Support
+8- Overall improved performance and stability
+
+
+>----Version 1.24----
+Skipped
+
+>----Version 1.25---- ( Hot Update Version )
+1. Removed autoroot
+2. Added tweaked smartassv2 governor
+3- fixed unwindtables error
+4- added SIO IO Scheduler
+5- added CFQ IO Scheduler
+6- added BSG IO Scheduler
+7- added AS IO Scheduler
+8- removed old smartass governor
+9- Integrated IP Tunneling
+10- Added LZO Compression
+11- Patched DIVX Fix
+12- Added 2 way call recording
+13- Optimised SLUB
+14- Added Tiny RCU
+15- Better and robust script code
+16- Overall improved and stablized
+
+>----Version 1.26---- 
+> WLAN fixed for all devices
+> New modules added in download folder
+> Fixed missing smartassv2, SIO and version number for mango ( Mini Pro )
+> Minor changes in CWM for MDPI devices
+> Changes in boot LED pattern for MDPI devices
+> Code changes in init.semc.rc for MDPI devices and urushi
+> Fixed urushu's WiFi modules initialization path ( /system/lib >> /system/lib/modules/--respective stock folder--- )
+
+>----Version 1.27---- 
+> Added ONDEMANDX Governor
+> Added INTERACTIVE X Governor
+> Optimised deadline and SIO 
+> Added Low Memory Killer Tweak
+> Removed Tiny RCU
+> Used Stock ramdisk for urushi ( fixed insmod modules path and boot fail error ) [ CWM can be Sideloaded ]
+> LED Pattern changed
+> Voltage table slightly changed
+> Universal WLAN modules for all devices attached
+> Overall improved and stabilized
+
+>----Version 1.28---- 
+> Added Smoothass governor
+> Added Brazilianwax governor
+> Added 4K msm_fb GPU patch
+> OC upto 2GHz with new frequency table entries and undervolting
+> Updated crc32 lib from 3.0 kernel
+> Increased VM_MAX_READAHEAD from 128 to 512
+> Fixed kalsysms and modpost compiler warnings
+> Added 0% Battery patch
+> msm_fb: display: remove #if 0
+> Stable CWM 5 added for 2011 MDPI Devices
+> Aroma bug fixed
+> Added support for phoenix
+> Overall Improved and stablized
+
+>----Version 1.29---- ( Ayame, Anzu, Phoenix and Iyokan Excluded )
+> Changed Maximum Frequency to 1.8 GHz
+> Cleaned ramdisk and reduced overall img size
+> Modded CWM ( Fixed black square while installing )
+> Added new script for Iyokan, Anzu, Ayame, Phoenix, Haida, Hallon
+> fs:lowered vfs_cache_pressure to 25
+> kernel:disabled gentle_fair_sleepers
+> Updated video/msm
+> Removed db vacumming
+> Default boot governor 'ondemand' set for all devices
+> Reduced boot up time ( Removed redundant scripts def. in init.semc.rc )
+
+>----Version 1.30---- ( Under Progess )
+> Reverted Max Freq. to 2.0 GHz
+>
