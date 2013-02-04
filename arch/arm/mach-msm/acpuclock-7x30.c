@@ -1,5 +1,5 @@
-/*
- * Vengeance Kernel Frequency Table
+/* Vengeance Frequency Table { OC ~ 170880 MHz Max }
+ *
  * Copyright (C) 2007 Google, Inc.
  * Copyright (c) 2007-2010, Code Aurora Forum. All rights reserved.
  *
@@ -40,10 +40,6 @@
 #define SCSS_CLK_SEL_ADDR	(MSM_ACC_BASE + 0x08)
 
 #define PLL2_L_VAL_ADDR		(MSM_CLK_CTL_BASE + 0x33C)
-#define PLL2_806_MHZ		42
-#define PLL2_1024_MHZ		53
-#define PLL2_1200_MHZ		125
-#define PLL2_1400_MHZ		73
 
 #define dprintk(msg...) \
 	cpufreq_debug_printk(CPUFREQ_DEBUG_DRIVER, "cpufreq-msm", msg)
@@ -58,6 +54,8 @@
 #define VDD_RAW(mv) (((MV(mv) / V_STEP) - 30) | VREG_DATA)
 
 #define MAX_AXI_KHZ 192000
+#define SEMC_ACPU_MIN_UV_MV 750U
+#define SEMC_ACPU_MAX_UV_MV 1525U
 
 struct clock_state {
 	struct clkctl_acpu_speed	*current_speed;
@@ -99,12 +97,8 @@ static struct cpufreq_frequency_table freq_table[] = {
 	{ 14, 1401600 },
 	{ 15, 1516800 },
 	{ 16, 1612800 },
-//	{ 17, CPUFREQ_TABLE_END },
-	{ 17, 1708800 },
-	{ 18, 1804800 },
-        { 19, 1900800 },
-	{ 20, 2016000 },
-	{ 21, CPUFREQ_TABLE_END },
+        { 17, 1708800 },
+	{ 18, CPUFREQ_TABLE_END },
 };
 
 /* Use negative numbers for sources that can't be enabled/disabled */
@@ -142,10 +136,7 @@ static struct clkctl_acpu_speed acpu_freq_tbl[] = {
 	{ 1401600, PLL_2,   3, 0,  UINT_MAX, 1250, VDD_RAW(1250) },
 	{ 1516800, PLL_2,   3, 0,  UINT_MAX, 1300, VDD_RAW(1300) },
 	{ 1612800, PLL_2,   3, 0,  UINT_MAX, 1300, VDD_RAW(1300) },
-	{ 1708800, PLL_2,   3, 0,  UINT_MAX, 1350, VDD_RAW(1350) },
-	{ 1804800, PLL_2,   3, 0,  UINT_MAX, 1400, VDD_RAW(1400) },
-	{ 1900800, PLL_2,   3, 0,  UINT_MAX, 1450, VDD_RAW(1450) },
-        { 2016000, PLL_2,   3, 0,  UINT_MAX, 1500, VDD_RAW(1500) },
+        { 1708800, PLL_2,   3, 0,  UINT_MAX, 1350, VDD_RAW(1350) },
 	{ 0 }
 };
 
@@ -412,51 +403,6 @@ static void __init lpj_init(void)
 	}
 }
 
-/* Update frequency tables for PLL2. */
-void __init pll2_fixup(void)
-{
-	struct clkctl_acpu_speed *speed;
-	struct cpufreq_frequency_table *cpu_freq;
-	u8 pll2_l;
-
-	pll2_l = readl(PLL2_L_VAL_ADDR) & 0xFF;
-	speed = &acpu_freq_tbl[ARRAY_SIZE(acpu_freq_tbl)-2];
-	cpu_freq = &freq_table[ARRAY_SIZE(freq_table)-2];
-
-	if (speed->acpu_clk_khz != 806400 || cpu_freq->frequency != 806400) {
-		//pr_err("Frequency table fixups for PLL2 rate failed.\n");
-		//BUG();
-		return;
-	}
-
-	switch (pll2_l) {
-	case PLL2_1024_MHZ:
-		speed->acpu_clk_khz = 1024000;
-		speed->vdd_mv = 1200;
-		speed->vdd_raw = VDD_RAW(1200);
-		cpu_freq->frequency = 1024000;
-		break;
-	case PLL2_1200_MHZ:
-		speed->acpu_clk_khz = 1200000;
-		speed->vdd_mv = 1200;
-		speed->vdd_raw = VDD_RAW(1200);
-		cpu_freq->frequency = 1200000;
-		break;
-	case PLL2_1400_MHZ:
-		speed->acpu_clk_khz = 1400000;
-		speed->vdd_mv = 1250;
-		speed->vdd_raw = VDD_RAW(1250);
-		cpu_freq->frequency = 1400000;
-		break;
-	case PLL2_806_MHZ:
-		/* No fixup necessary */
-		break;
-	default:
-		pr_err("Unknown PLL2 lval %d\n", pll2_l);
-		BUG();
-	}
-}
-
 #define RPM_BYPASS_MASK	(1 << 3)
 #define PMIC_MODE_MASK	(1 << 4)
 
@@ -467,10 +413,47 @@ void __init msm_acpu_clock_init(struct msm_acpu_clock_platform_data *clkdata)
 	mutex_init(&drv_state.lock);
 	drv_state.acpu_switch_time_us = clkdata->acpu_switch_time_us;
 	drv_state.vdd_switch_time_us = clkdata->vdd_switch_time_us;
-	pll2_fixup();
 	acpuclk_init();
 	lpj_init();
-#ifdef CONFIG_CPU_FREQ_MSM
+
 	cpufreq_frequency_table_get_attr(freq_table, smp_processor_id());
-#endif
 }
+
+#ifdef CONFIG_CPU_FREQ_VDD_LEVELS
+
+ssize_t acpuclk_get_vdd_levels_str(char *buf)
+{
+	int i, len = 0;
+	if (buf)
+	{
+		mutex_lock(&drv_state.lock);
+		for (i = 0; acpu_freq_tbl[i].acpu_clk_khz; i++)
+		{
+				len += sprintf(buf + len, "%8u: %4d\n", acpu_freq_tbl[i].acpu_clk_khz, acpu_freq_tbl[i].vdd_mv);
+		}
+		mutex_unlock(&drv_state.lock);
+	}
+	return len;
+}
+
+void acpuclk_set_vdd(unsigned int khz, int vdd)
+{
+	int i;
+	unsigned int new_vdd;
+	vdd = vdd / V_STEP * V_STEP;
+	mutex_lock(&drv_state.lock);
+	for (i = 0; acpu_freq_tbl[i].acpu_clk_khz; i++)
+	{
+			if (khz == 0)
+				new_vdd = min(max((acpu_freq_tbl[i].vdd_mv + vdd), SEMC_ACPU_MIN_UV_MV), SEMC_ACPU_MAX_UV_MV);
+			else if (acpu_freq_tbl[i].acpu_clk_khz == khz)
+				new_vdd = min(max((unsigned int)vdd, SEMC_ACPU_MIN_UV_MV), SEMC_ACPU_MAX_UV_MV);
+			else continue;
+
+			acpu_freq_tbl[i].vdd_mv = new_vdd;
+			acpu_freq_tbl[i].vdd_raw = VDD_RAW(new_vdd);
+	}
+	mutex_unlock(&drv_state.lock);
+}
+
+#endif

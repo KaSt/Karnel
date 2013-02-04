@@ -116,5 +116,7 @@ Skipped
 > Reduced boot up time ( Removed redundant scripts def. in init.semc.rc )
 
 >----Version 1.30---- ( Under Progess )
-> Reverted Max Freq. to 2.0 GHz
->
+> Reverted Max Freq. to 1.7 GHz
+> Undervolted to save battery
+> Updated Android Binder
+> Added cleancache
