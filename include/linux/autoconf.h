@@ -1,7 +1,7 @@
 /*
  * Automatically generated C config: don't edit
  * Linux kernel version: 2.6.32.9
- * Mon Feb  4 22:15:59 2013
+ * Tue Feb  5 00:04:01 2013
  */
 #define AUTOCONF_INCLUDED
 #define CONFIG_ZRAM_DEBUG 1
@@ -170,6 +170,7 @@
 #define CONFIG_MMC_UNSAFE_RESUME 1
 #define CONFIG_BT_BNEP_MC_FILTER 1
 #define CONFIG_MSM_VIC 1
+#define CONFIG_SNAPPY_DECOMPRESS 1
 #define CONFIG_NET_KEY 1
 #define CONFIG_RD_GZIP 1
 #define CONFIG_MMC_MSM_SDC2_SUPPORT 1
@@ -608,6 +609,7 @@
 #define CONFIG_NET_ETHERNET 1
 #define CONFIG_NETFILTER_XT_MATCH_LENGTH 1
 #define CONFIG_SMC91X 1
+#define CONFIG_SNAPPY_COMPRESS 1
 #define CONFIG_MMC_BLOCK 1
 #define CONFIG_NET_SCH_FIFO 1
 #define CONFIG_SSB_POSSIBLE 1

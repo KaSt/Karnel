@@ -80,6 +80,7 @@ deps_config := \
 	fs/Kconfig \
 	drivers/platform/x86/Kconfig \
 	drivers/platform/Kconfig \
+	drivers/staging/snappy/Kconfig \
 	drivers/staging/zram/Kconfig \
 	drivers/staging/iio/trigger/Kconfig \
 	drivers/staging/iio/light/Kconfig \
