@@ -1,4 +1,4 @@
-                                                            Changelog for Vengeance Kernel
+                                            Changelog for Vengeance Kernel
                                                
 Devices Supported ( MSM7x30 - 2.6.32.9 Linux kernel ):-
 * Coconut ( Live With Walkman )
