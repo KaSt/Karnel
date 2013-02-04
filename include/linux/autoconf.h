@@ -1,7 +1,7 @@
 /*
  * Automatically generated C config: don't edit
  * Linux kernel version: 2.6.32.9
- * Mon Feb  4 20:47:02 2013
+ * Mon Feb  4 21:09:57 2013
  */
 #define AUTOCONF_INCLUDED
 #define CONFIG_ZRAM_DEBUG 1
@@ -661,6 +661,7 @@
 #define CONFIG_RTC_INTF_DEV 1
 #define CONFIG_LCD_CLASS_DEVICE 1
 #define CONFIG_MSM_KGSL_GPUMMU 1
+#define CONFIG_CLEANCACHE 1
 #define CONFIG_PMIC_TIME 1
 #define CONFIG_PACKET 1
 #define CONFIG_CPU_FREQ_GOV_CONSERVATIVE 1
