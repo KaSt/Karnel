@@ -116,7 +116,12 @@ Skipped
 > Reduced boot up time ( Removed redundant scripts def. in init.semc.rc )
 
 >----Version 1.30---- ( Under Progess )
+> Kernel name changed to 'Vengeance'
 > Reverted Max Freq. to 1.7 GHz
 > Undervolted to save battery
 > Updated Android Binder
 > Added cleancache
+> Added CIFS, NTFS and FUSE
+> Smart CPU freq. Toggle
+> Optimised LMK
+> Added Compaction
