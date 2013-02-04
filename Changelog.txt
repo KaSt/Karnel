@@ -125,3 +125,4 @@ Skipped
 > Smart CPU freq. Toggle
 > Optimised LMK
 > Added Compaction
+> Added Google Compression/Decompression Drivers
