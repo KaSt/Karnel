@@ -115,7 +115,7 @@ Skipped
 > Default boot governor 'ondemand' set for all devices
 > Reduced boot up time ( Removed redundant scripts def. in init.semc.rc )
 
->----Version 1.30---- ( Under Progess )
+>----Version 1.30---- ( First release : Vengeance )
 > Kernel name changed to 'Vengeance'
 > Reverted Max Freq. to 1.7 GHz
 > Undervolted to save battery
@@ -124,5 +124,14 @@ Skipped
 > Added CIFS, NTFS and FUSE
 > Smart CPU freq. Toggle
 > Optimised LMK
+> Updated drivers:video/msm
 > Added Compaction
 > Added Google Compression/Decompression Drivers
+> New boot pattern for Ayame, Anzu, Iyokan, Phoenix, Haida, Hallon
+> New Veng boot script for all devices ( Log in data/local/temp )
+> Vibrate Enter recovery notification added for all devices
+> msm: Two panel mode enabled
+> Boot frequency set to stock - Max: 1017600 Min: 249600 ( Ayame- Max : 1401700 Min: 249600 )
+> Default boot governor : Ondemand
+> Decreased Boot up time by removing redundant scripts from init.rc
+> Overall improved and stablized
