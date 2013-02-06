@@ -135,4 +135,5 @@ Skipped
 > Boot frequency set to stock - Max: 1017600 Min: 249600 ( Ayame- Max : 1401700 Min: 249600 )
 > Default boot governor : Ondemand
 > Decreased Boot up time by removing redundant scripts from init.rc
+> Fixed Sound Enhancements FC ( haida, hallon, anzu, iyokan, ayame, phoenix )
 > Overall improved and stablized
